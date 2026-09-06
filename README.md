@@ -1,4 +1,4 @@
-# âš¡ PR-Architect-Play (`summarize-github-pr`)
+# PR-Architect-Play (`summarize-github-pr`)
 
 > **Deterministic, Zero-Friction Pull Request Architecture & Risk Analysis Workflow**  
 > Built with [Rote](https://modiqo.ai) for the **Rote Playoffs Hackathon 2026** by Modiqo & WeMakeDevs.
@@ -10,7 +10,7 @@
 
 ---
 
-## ðŸ“¸ Screenshots & Verification Evidence
+## Screenshots & Verification Evidence
 
 ### 1. Modiqo Official Registry Verification
 Verified, released, and immutable Play manifest on the public Modiqo Play Registry:
@@ -35,30 +35,31 @@ Running live in terminal via the official Rote runtime engine:
 
 ---
 
-## ðŸ’¡ The Problem: AI Session Amnesia in Code Review
+## The Problem: AI Session Amnesia in Code Review
 
 Every day, software engineering teams spend hours navigating massive 30+ file PR diffs, hunting for breaking changes, and manually synthesizing architectural impact. 
 
 When you ask an AI agent to analyze a PR, it works once. But the moment the session terminates, **the methodology evaporates**. The next sprint, you have to reinvent the prompt, hope the model does not hallucinate, and pray your review catches regressions.
 
-**PR-Architect-Play kills that friction permanently.** It captures the review methodology into an inspectable, deterministic TypeScript DAG that executes reliably on any public GitHub Pull Request.
+> [!IMPORTANT]
+> **PR-Architect-Play kills that friction permanently.** It captures the review methodology into an inspectable, deterministic TypeScript DAG that executes reliably on any public GitHub Pull Request.
 
 ---
 
-## ðŸ—ï¸ Architecture & Execution DAG
+## Architecture & Execution DAG
 
 ```mermaid
 graph TD
     A[Incoming Pull Request<br/>Owner / Repo / PR Number] --> B[Modiqo GitHub Adapter<br/>Zero-Token AST Fetch]
-    B --> C[Breaking Risk Detector<br/>â€¢ Lint suppression breaks<br/>â€¢ Render-phase I/O hazards<br/>â€¢ Unmerged commit drift]
-    B --> D[Architecture Invariant Radar<br/>â€¢ Module boundary isolation<br/>â€¢ Core vs wrapper divergence<br/>â€¢ Compiler memoization impact]
+    B --> C[Breaking Risk Detector<br/>- Lint suppression breaks<br/>- Render-phase I/O hazards<br/>- Unmerged commit drift]
+    B --> D[Architecture Invariant Radar<br/>- Module boundary isolation<br/>- Core vs wrapper divergence<br/>- Compiler memoization impact]
     C --> E[Deterministic Markdown DAG<br/>Execution < 3.2s]
     D --> E
 ```
 
 ---
 
-## ðŸ” Core Capabilities
+## Core Capabilities
 
 - **Pre-Merge Breaking Risk Detection:** Surfaces unmerged PR hazards, unsafe lint-suppression side-effects, and render-phase I/O side effects that standard CI tests miss.
 - **Architecture Invariant Mapping:** Traces module boundary crossings and structural invariants (tested live against React Compiler PR #31642).
@@ -67,7 +68,7 @@ graph TD
 
 ---
 
-## ðŸš€ Quickstart: Run in 5 Seconds
+## Quickstart: Run in 5 Seconds
 
 ### 1. Inspect the Cryptographic Contract
 Inspect requirements, declared permissions, and input boundaries before running:
@@ -92,7 +93,7 @@ rote play run https://play.modiqo.ai/priyanshu-patel/summarize-github-pr@0.0.1 \
 
 ---
 
-## ðŸ“Š Live Verification Benchmark
+## Live Verification Benchmark
 
 Tested live on [facebook/react#31642](https://github.com/facebook/react/pull/31642):
 
@@ -121,7 +122,7 @@ State: closed | +25/-0 across 2 files
 
 ---
 
-## ðŸ”— Links & Registry Verification
+## Links & Registry Verification
 
 - **Official Modiqo Registry:** [play.modiqo.ai/priyanshu-patel/summarize-github-pr@0.0.1](https://play.modiqo.ai/priyanshu-patel/summarize-github-pr@0.0.1)
 - **Author Namespace:** `priyanshu-patel`
