@@ -1,4 +1,4 @@
-# PR-Architect-Play (`summarize-github-pr`)
+# âš¡ PR-Architect-Play (`summarize-github-pr`)
 
 > **Deterministic, Zero-Friction Pull Request Architecture & Risk Analysis Workflow**  
 > Built with [Rote](https://modiqo.ai) for the **Rote Playoffs Hackathon 2026** by Modiqo & WeMakeDevs.
@@ -10,7 +10,32 @@
 
 ---
 
-## The Problem: AI Session Amnesia in Code Review
+## ðŸ“¸ Screenshots & Verification Evidence
+
+### 1. Modiqo Official Registry Verification
+Verified, released, and immutable Play manifest on the public Modiqo Play Registry:
+
+<p align="center">
+  <img src="assets/modiqo-registry-1.png" alt="Modiqo Official Registry Verification" width="850"/>
+</p>
+
+### 2. Live Runtime & Parameter Configuration
+Inspecting input parameters (`owner`, `repo`, `pull_number`) and zero-write security isolation:
+
+<p align="center">
+  <img src="assets/modiqo-registry-2.png" alt="Parameters and Security Declarations" width="850"/>
+</p>
+
+### 3. Real-World Execution: React Compiler PR (#31642)
+Running live in terminal via the official Rote runtime engine:
+
+<p align="center">
+  <img src="assets/terminal-run.png" alt="Live Terminal Execution Output" width="850"/>
+</p>
+
+---
+
+## ðŸ’¡ The Problem: AI Session Amnesia in Code Review
 
 Every day, software engineering teams spend hours navigating massive 30+ file PR diffs, hunting for breaking changes, and manually synthesizing architectural impact. 
 
@@ -20,7 +45,7 @@ When you ask an AI agent to analyze a PR, it works once. But the moment the sess
 
 ---
 
-## Architecture & Execution DAG
+## ðŸ—ï¸ Architecture & Execution DAG
 
 ```mermaid
 graph TD
@@ -33,7 +58,7 @@ graph TD
 
 ---
 
-## Core Capabilities
+## ðŸ” Core Capabilities
 
 - **Pre-Merge Breaking Risk Detection:** Surfaces unmerged PR hazards, unsafe lint-suppression side-effects, and render-phase I/O side effects that standard CI tests miss.
 - **Architecture Invariant Mapping:** Traces module boundary crossings and structural invariants (tested live against React Compiler PR #31642).
@@ -42,7 +67,7 @@ graph TD
 
 ---
 
-## Quickstart: Run in 5 Seconds
+## ðŸš€ Quickstart: Run in 5 Seconds
 
 ### 1. Inspect the Cryptographic Contract
 Inspect requirements, declared permissions, and input boundaries before running:
@@ -67,7 +92,7 @@ rote play run https://play.modiqo.ai/priyanshu-patel/summarize-github-pr@0.0.1 \
 
 ---
 
-## Live Verification Benchmark
+## ðŸ“Š Live Verification Benchmark
 
 Tested live on [facebook/react#31642](https://github.com/facebook/react/pull/31642):
 
@@ -96,7 +121,7 @@ State: closed | +25/-0 across 2 files
 
 ---
 
-## Links & Registry Verification
+## ðŸ”— Links & Registry Verification
 
 - **Official Modiqo Registry:** [play.modiqo.ai/priyanshu-patel/summarize-github-pr@0.0.1](https://play.modiqo.ai/priyanshu-patel/summarize-github-pr@0.0.1)
 - **Author Namespace:** `priyanshu-patel`
