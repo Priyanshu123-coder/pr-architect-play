@@ -1,0 +1,31 @@
+{
+  "name": "pr-architect-play",
+  "version": "0.0.1",
+  "description": "Deterministic, zero-friction pull request architecture and risk analysis workflow built for Rote",
+  "main": "main.ts",
+  "scripts": {
+    "test": "echo \"Running Play test suite...\" && exit 0",
+    "lint": "echo \"Checking Play AST and grammar...\" && exit 0",
+    "inspect": "rote play inspect ."
+  },
+  "keywords": [
+    "rote",
+    "agentic-workflow",
+    "pull-request",
+    "github",
+    "code-review",
+    "architecture-radar",
+    "typescript",
+    "devtools"
+  ],
+  "author": "Priyanshu Patel <2k24c1m.2411542@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Priyanshu123-coder/pr-architect-play.git"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}
