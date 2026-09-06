@@ -1,4 +1,4 @@
-# âš¡ PR-Architect-Play (summarize-github-pr)
+# PR-Architect-Play (`summarize-github-pr`)
 
 > **Deterministic, Zero-Friction Pull Request Architecture & Risk Analysis Workflow**  
 > Built with [Rote](https://modiqo.ai) for the **Rote Playoffs Hackathon 2026** by Modiqo & WeMakeDevs.
@@ -10,50 +10,30 @@
 
 ---
 
-## ðŸ’¡ The Problem: AI Session Amnesia in Code Review
+## The Problem: AI Session Amnesia in Code Review
+
 Every day, software engineering teams spend hours navigating massive 30+ file PR diffs, hunting for breaking changes, and manually synthesizing architectural impact. 
 
-When you ask an AI agent to analyze a PR, it works once. But the moment the session terminates, **the methodology evaporates**. The next sprint, you have to reinvent the prompt, hope the model doesn't hallucinate, and pray your review catches regressions.
+When you ask an AI agent to analyze a PR, it works once. But the moment the session terminates, **the methodology evaporates**. The next sprint, you have to reinvent the prompt, hope the model does not hallucinate, and pray your review catches regressions.
 
 **PR-Architect-Play kills that friction permanently.** It captures the review methodology into an inspectable, deterministic TypeScript DAG that executes reliably on any public GitHub Pull Request.
 
 ---
 
-## ðŸ—ï¸ Architecture & Execution DAG
+## Architecture & Execution DAG
 
-`
-                        â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                        â”‚   Incoming Pull Request      â”‚
-                        â”‚ (Owner / Repo / PR Number)   â”‚
-                        â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                                       â”‚
-                                       â–¼
-                        â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                        â”‚    Modiqo GitHub Adapter     â”‚
-                        â”‚    (Zero-Token AST Fetch)    â”‚
-                        â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                                       â”‚
-                 â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                 â–¼                                           â–¼
-  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”            â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-  â”‚   Breaking Risk Detector     â”‚            â”‚ Architecture Invariant Radar â”‚
-  â”‚ â€¢ Lint suppression breaks    â”‚            â”‚ â€¢ Module boundary isolation  â”‚
-  â”‚ â€¢ Render-phase I/O hazards   â”‚            â”‚ â€¢ Core vs wrapper divergence â”‚
-  â”‚ â€¢ Unmerged commit drift      â”‚            â”‚ â€¢ Compiler memoization impactâ”‚
-  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜            â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                 â”‚                                           â”‚
-                 â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                                       â”‚
-                                       â–¼
-                        â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                        â”‚ Deterministic Markdown DAG   â”‚
-                        â”‚    (Execution < 3.2s)        â”‚
-                        â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-`
+```mermaid
+graph TD
+    A[Incoming Pull Request<br/>Owner / Repo / PR Number] --> B[Modiqo GitHub Adapter<br/>Zero-Token AST Fetch]
+    B --> C[Breaking Risk Detector<br/>â€¢ Lint suppression breaks<br/>â€¢ Render-phase I/O hazards<br/>â€¢ Unmerged commit drift]
+    B --> D[Architecture Invariant Radar<br/>â€¢ Module boundary isolation<br/>â€¢ Core vs wrapper divergence<br/>â€¢ Compiler memoization impact]
+    C --> E[Deterministic Markdown DAG<br/>Execution < 3.2s]
+    D --> E
+```
 
 ---
 
-## ðŸ” Core Capabilities
+## Core Capabilities
 
 - **Pre-Merge Breaking Risk Detection:** Surfaces unmerged PR hazards, unsafe lint-suppression side-effects, and render-phase I/O side effects that standard CI tests miss.
 - **Architecture Invariant Mapping:** Traces module boundary crossings and structural invariants (tested live against React Compiler PR #31642).
@@ -62,36 +42,36 @@ When you ask an AI agent to analyze a PR, it works once. But the moment the sess
 
 ---
 
-## ðŸš€ Quickstart: Run in 5 Seconds
+## Quickstart: Run in 5 Seconds
 
 ### 1. Inspect the Cryptographic Contract
-Inspect the requirements, declared permissions, and input boundaries before running:
-`ash
+Inspect requirements, declared permissions, and input boundaries before running:
+```bash
 rote play inspect https://play.modiqo.ai/priyanshu-patel/summarize-github-pr@0.0.1
-`
+```
 
 ### 2. Execute Against Any Pull Request
 Run the workflow directly on your terminal or agent harness:
-`ash
+```bash
 rote play run https://play.modiqo.ai/priyanshu-patel/summarize-github-pr@0.0.1
-`
+```
 
 Pass arguments non-interactively:
-`ash
+```bash
 rote play run https://play.modiqo.ai/priyanshu-patel/summarize-github-pr@0.0.1 \
   --yes \
   'owner=facebook' \
   'repo=react' \
   'pull_number=31642'
-`
+```
 
 ---
 
-## ðŸ“Š Live Verification Benchmark
+## Live Verification Benchmark
 
 Tested live on [facebook/react#31642](https://github.com/facebook/react/pull/31642):
 
-`	ext
+```text
 # facebook/react#31642: Fix ref.current error during render initialization
 State: closed | +25/-0 across 2 files
 
@@ -112,12 +92,12 @@ State: closed | +25/-0 across 2 files
 ## Architecture impact
 - Policy belongs in core validation, not ESLint wrapper layer
 - ESLint adapter should mirror core, not diverge with ad-hoc allows
-`
+```
 
 ---
 
-## ðŸ”— Links & Registry Verification
+## Links & Registry Verification
 
 - **Official Modiqo Registry:** [play.modiqo.ai/priyanshu-patel/summarize-github-pr@0.0.1](https://play.modiqo.ai/priyanshu-patel/summarize-github-pr@0.0.1)
-- **Author Namespace:** priyanshu-patel
+- **Author Namespace:** `priyanshu-patel`
 - **Hackathon:** [Rote Playoffs 2026](https://www.modiqo.ai/blog/the-playoffs) by Modiqo & WeMakeDevs
